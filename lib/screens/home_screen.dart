@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart'as MBS;
 
 import '../cubit/fatora_cubit.dart';
 import '../cubit/fatora_state.dart';
@@ -137,94 +138,99 @@ class HomeScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  showMaterialModalBottomSheet(
+                  MBS.showMaterialModalBottomSheet(
                     expand: true,
                     context: context,
                     builder: (_) => Directionality(
                       textDirection: TextDirection.rtl,
-                      child: Container(
-                        color: Color(0xFF15202B),
-                        child: Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Form(
-                            key: FatoraCubit.get(context).formKey,
-                            child: Center(
-                              child: SingleChildScrollView(
-                                physics: const BouncingScrollPhysics(),
-                                child: Column(
-                                  children: [
-                                    DefaultTextField(
-                                      controller:
-                                          FatoraCubit.get(context).priceController,
-                                      label: 'سعر السلعة',
-                                      validator: (String? data) {
-                                        if (data!.isEmpty) {
-                                          return 'لا يجب ان يكون فارغا';
-                                        }
-                                        try {
-                                          double.parse(data);
-                                        } catch (e) {
-                                          return 'برجاء ادخال اعداد فقط';
-                                        }
-                                        return null;
-                                      },
-                                      keyboardType: TextInputType.number,
-                                    ),
-                                    SizedBox(
-                                      height: 25.0,
-                                    ),
-                                    DefaultTextField(
-                                      controller:
-                                          FatoraCubit.get(context).nameController,
-                                      label: 'اسم السلعة',
-                                      validator: (String? data) {
-                                        if (data!.isEmpty) {
-                                          return 'لا يجب ان يكون فارغا';
-                                        }
-                                        return null;
-                                      },
-                                      keyboardType: TextInputType.text,
-                                    ),
-                                    SizedBox(
-                                      height: 25.0,
-                                    ),
-                                    MaterialButton(
-                                      onPressed: () {
-                                        if (FatoraCubit.get(context)
-                                            .formKey
-                                            .currentState!
-                                            .validate()) {
-                                          print(FatoraCubit.get(context)
-                                              .priceController
-                                              .text);
-                                          FatoraCubit.get(context)
-                                              .insertToDB(
-                                            date: DateTime.now().toString().substring(0,10),
-                                                  name: FatoraCubit.get(context)
-                                                      .nameController
-                                                      .text,
-                                                  price: FatoraCubit.get(context)
-                                                      .priceController
-                                                      .text)
-                                              .then((value) {
-                                            FatoraCubit.get(context)
-                                                .nameController
-                                                .clear();
-                                            FatoraCubit.get(context)
-                                                .priceController
-                                                .clear();
-                                            Navigator.pop(context);
-                                          });
-                                        }
-                                      },
-                                      color: Color(0xFF253341),
-                                      child: Text(
-                                        'اضف',
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 30.0),
+                      child: Scaffold(
+                        appBar: AppBar(
+
+                        ),
+                        body: Container(
+                          color: Color(0xFF15202B),
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Form(
+                              key: FatoraCubit.get(context).formKey,
+                              child: Center(
+                                child: SingleChildScrollView(
+                                  physics: const BouncingScrollPhysics(),
+                                  child: Column(
+                                    children: [
+                                      DefaultTextField(
+                                        controller:
+                                        FatoraCubit.get(context).priceController,
+                                        label: 'سعر السلعة',
+                                        validator: (String? data) {
+                                          if (data!.isEmpty) {
+                                            return 'لا يجب ان يكون فارغا';
+                                          }
+                                          try {
+                                            double.parse(data);
+                                          } catch (e) {
+                                            return 'برجاء ادخال اعداد فقط';
+                                          }
+                                          return null;
+                                        },
+                                        keyboardType: TextInputType.number,
                                       ),
-                                    )
-                                  ],
+                                      SizedBox(
+                                        height: 25.0,
+                                      ),
+                                      DefaultTextField(
+                                        controller:
+                                        FatoraCubit.get(context).nameController,
+                                        label: 'اسم السلعة',
+                                        validator: (String? data) {
+                                          if (data!.isEmpty) {
+                                            return 'لا يجب ان يكون فارغا';
+                                          }
+                                          return null;
+                                        },
+                                        keyboardType: TextInputType.text,
+                                      ),
+                                      SizedBox(
+                                        height: 25.0,
+                                      ),
+                                      MaterialButton(
+                                        onPressed: () {
+                                          if (FatoraCubit.get(context)
+                                              .formKey
+                                              .currentState!
+                                              .validate()) {
+                                            print(FatoraCubit.get(context)
+                                                .priceController
+                                                .text);
+                                            FatoraCubit.get(context)
+                                                .insertToDB(
+                                                date: DateTime.now().toString().substring(0,10),
+                                                name: FatoraCubit.get(context)
+                                                    .nameController
+                                                    .text,
+                                                price: FatoraCubit.get(context)
+                                                    .priceController
+                                                    .text)
+                                                .then((value) {
+                                              FatoraCubit.get(context)
+                                                  .nameController
+                                                  .clear();
+                                              FatoraCubit.get(context)
+                                                  .priceController
+                                                  .clear();
+                                              Navigator.pop(context);
+                                            });
+                                          }
+                                        },
+                                        color: Color(0xFF253341),
+                                        child: Text(
+                                          'اضف',
+                                          style: TextStyle(
+                                              color: Colors.white, fontSize: 30.0),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

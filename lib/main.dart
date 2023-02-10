@@ -1,6 +1,7 @@
 import 'package:fatora/cubit/fatora_cubit.dart';
 import 'package:fatora/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,11 +17,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Fatora',
+      debugShowCheckedModeBanner: false,
       darkTheme: ThemeData(
           primarySwatch: Colors.grey,
           appBarTheme: AppBarTheme(
             backgroundColor: Color(0xFF15202B),
+            elevation: 0.0,
+            iconTheme:IconThemeData(color: Colors.white) ,
+            systemOverlayStyle: SystemUiOverlayStyle(
+                statusBarColor: Color(0xFF15202B),
+
+            )
           ),
           scaffoldBackgroundColor: Color(0xFF15202B)),
       themeMode: ThemeMode.dark,
