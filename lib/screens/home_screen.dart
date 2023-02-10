@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
                                   textDirection: TextDirection.rtl,
                                   child: AlertDialog(
                                     backgroundColor: Color(0xFF253341),
-                                    title: Text(
+                                    title: const Text(
                                       'هل تريد حذف الكل ؟!',
                                       style: TextStyle(color: Colors.white),
                                     ),
@@ -39,11 +39,11 @@ class HomeScreen extends StatelessWidget {
                                               Navigator.pop(context);
                                             });
                                           },
-                                          child: Text(
+                                          color: Colors.red,
+                                          child: const Text(
                                             'نعم',
-                                            style: TextStyle(fontSize: 30),
-                                          ),
-                                          color: Colors.red),
+                                            style: TextStyle(fontSize: 20),
+                                          )),
                                       MaterialButton(
                                         onPressed: () {
                                           FatoraCubit.get(context)
@@ -52,17 +52,17 @@ class HomeScreen extends StatelessWidget {
                                             Navigator.pop(context);
                                           });
                                         },
-                                        child: Text(
-                                          'لا',
-                                          style: TextStyle(fontSize: 30),
-                                        ),
                                         color: Colors.green,
+                                        child: const Text(
+                                          'لا',
+                                          style: TextStyle(fontSize: 20),
+                                        ),
                                       )
                                     ],
                                   ),
                                 ));
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.delete,
                         color: Colors.red,
                       ),
@@ -71,13 +71,13 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
               body: FatoraCubit.get(context).data.isEmpty
-                  ? Center(
+                  ? const Center(
                       child: Text(
                       'لا توجد بيانات !!.. برجاء الضغط على + لاضافة سلعة',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 35.0,
+                          fontSize: 30.0,
                           fontWeight: FontWeight.bold),
                     ))
                   : Column(
@@ -96,7 +96,7 @@ class HomeScreen extends StatelessWidget {
                                   ),
                               separatorBuilder: (_, index) => Container(
                                     margin:
-                                        EdgeInsets.symmetric(horizontal: 30.0),
+                                        const EdgeInsets.symmetric(horizontal: 30.0),
                                     color: Color(0xFF253341),
                                     width: double.infinity,
                                     height: 1,
@@ -105,14 +105,14 @@ class HomeScreen extends StatelessWidget {
                         ),
                         if (FatoraCubit.get(context).total != 0)
                           Container(
-                            margin: EdgeInsetsDirectional.all(20),
+                            margin: const EdgeInsetsDirectional.all(20),
                             decoration: BoxDecoration(
-                                color: Color(0xFF253341),
+                                color: const Color(0xFF253341),
                                 borderRadius: BorderRadius.circular(20)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
+                                const Text(
                                   'الاجمالى :',
                                   style: TextStyle(
                                       fontSize: 40.0,
@@ -121,7 +121,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 Text(
                                   ' ${FatoraCubit.get(context).total.round()} ',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 40.0,
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
@@ -132,8 +132,8 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
               floatingActionButton: FloatingActionButton(
-                backgroundColor: Color(0xFF253341),
-                child: Icon(
+                backgroundColor: const Color(0xFF253341),
+                child: const Icon(
                   Icons.add,
                   color: Colors.white,
                 ),
@@ -148,7 +148,7 @@ class HomeScreen extends StatelessWidget {
 
                         ),
                         body: Container(
-                          color: Color(0xFF15202B),
+                          color: const Color(0xFF15202B),
                           child: Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Form(
@@ -175,7 +175,7 @@ class HomeScreen extends StatelessWidget {
                                         },
                                         keyboardType: TextInputType.number,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 25.0,
                                       ),
                                       DefaultTextField(
@@ -190,7 +190,7 @@ class HomeScreen extends StatelessWidget {
                                         },
                                         keyboardType: TextInputType.text,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 25.0,
                                       ),
                                       MaterialButton(
@@ -223,10 +223,10 @@ class HomeScreen extends StatelessWidget {
                                           }
                                         },
                                         color: Color(0xFF253341),
-                                        child: Text(
+                                        child: const Text(
                                           'اضف',
                                           style: TextStyle(
-                                              color: Colors.white, fontSize: 30.0),
+                                              color: Colors.white, fontSize: 25.0),
                                         ),
                                       )
                                     ],
@@ -269,7 +269,7 @@ class DefaultTextField extends StatelessWidget {
       controller: controller,
       keyboardType: keyboardType,
       style: const TextStyle(
-          color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
+          color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
       decoration: InputDecoration(
         label: Text(
           label,
@@ -311,8 +311,8 @@ class _BuildFatouraItemState extends State<BuildFatouraItem> {
             builder: (_) => Directionality(
                   textDirection: TextDirection.rtl,
                   child: AlertDialog(
-                    backgroundColor: Color(0xFF253341),
-                    title: Text(
+                    backgroundColor: const Color(0xFF253341),
+                    title: const Text(
                       'هل تريد الحذف ؟',
                       style: TextStyle(color: Colors.white),
                     ),
@@ -325,22 +325,22 @@ class _BuildFatouraItemState extends State<BuildFatouraItem> {
                               Navigator.pop(context);
                             });
                           },
-                          child: Text(
+                          color: Colors.red,
+                          child: const Text(
                             'نعم',
-                            style: TextStyle(fontSize: 30),
-                          ),
-                          color: Colors.red),
+                            style: TextStyle(fontSize: 20),
+                          )),
                       MaterialButton(
                         onPressed: () {
                           FatoraCubit.get(context).getAllData().then((value) {
                             Navigator.pop(context);
                           });
                         },
-                        child: Text(
-                          'لا',
-                          style: TextStyle(fontSize: 30),
-                        ),
                         color: Colors.green,
+                        child: const Text(
+                          'لا',
+                          style: TextStyle(fontSize: 20),
+                        ),
                       )
                     ],
                   ),
@@ -370,7 +370,7 @@ class _BuildFatouraItemState extends State<BuildFatouraItem> {
             Expanded(
               child: Text(
                 widget.name,
-                style: TextStyle(color: Colors.white, fontSize: 35.0),
+                style: const TextStyle(color: Colors.white, fontSize: 35.0),
               ),
             ),
           ],

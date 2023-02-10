@@ -1,7 +1,9 @@
-import 'package:fatora/cubit/fatora_cubit.dart';
-import 'package:fatora/screens/home_screen.dart';
+
+import 'package:fatora_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'cubit/fatora_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       darkTheme: ThemeData(
           primarySwatch: Colors.grey,
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
             backgroundColor: Color(0xFF15202B),
             elevation: 0.0,
             iconTheme:IconThemeData(color: Colors.white) ,
@@ -30,11 +32,11 @@ class MyApp extends StatelessWidget {
 
             )
           ),
-          scaffoldBackgroundColor: Color(0xFF15202B)),
+          scaffoldBackgroundColor: const Color(0xFF15202B)),
       themeMode: ThemeMode.dark,
-      home: Directionality(
-        child: const HomeScreen(),
+      home: const Directionality(
         textDirection: TextDirection.rtl,
+        child: HomeScreen(),
       ),
     );
   }
